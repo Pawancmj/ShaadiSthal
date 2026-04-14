@@ -27,10 +27,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <body
         className={`${playfair.variable} ${dmSans.variable} ${plusJakarta.variable} antialiased`}
         style={{ fontFamily: "'DM Sans', sans-serif" }}
+        suppressHydrationWarning
       >
         {children}
       </body>
