@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 const navLinks = [
   { label: "Venues", href: "/venues" },
   { label: "Vendors", href: "/vendors" },
+  { label: "Real Weddings", href: "/real-wedding" },
+  { label: "Comparison", href: "/comparison" },
   { label: "Inspiration", href: "/inspiration" },
   { label: "Gallery", href: "/gallery" },
   { label: "Planning", href: "/planning" },
@@ -37,7 +39,7 @@ export default function Header() {
           justifyContent: "space-between",
         }}
       >
-        {/* Logo – always redirects to home */}
+        {/* Logo */}
         <Link href="/" style={{ textDecoration: "none" }}>
           <span
             style={{
@@ -52,20 +54,22 @@ export default function Header() {
         </Link>
 
         {/* Navigation Links */}
-        <nav style={{ display: "flex", gap: 32, alignItems: "center" }}>
+        <nav style={{ display: "flex", gap: 24, alignItems: "center" }}>
           {navLinks.map((item) => {
-            const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
+            const isActive =
+              pathname === item.href || pathname.startsWith(item.href + "/");
             return (
               <Link
                 key={item.label}
                 href={item.href}
                 style={{
-                  fontSize: "0.82rem",
-                  fontWeight: 500,
+                  fontSize: "0.78rem",
+                  fontWeight: isActive ? 600 : 500,
                   color: isActive ? "#C8102E" : "#555",
                   textDecoration: "none",
                   borderBottom: isActive ? "2px solid #C8102E" : "none",
                   paddingBottom: isActive ? 2 : 0,
+                  whiteSpace: "nowrap",
                 }}
               >
                 {item.label}
@@ -74,8 +78,19 @@ export default function Header() {
           })}
         </nav>
 
-        {/* Right side – Sign In button (optional) */}
-        <div>
+        {/* Right side */}
+        <div style={{ display: "flex", alignItems: "center", gap: 12, flexShrink: 0 }}>
+          <Link
+            href="/sign-in"
+            style={{
+              fontSize: "0.78rem",
+              fontWeight: 500,
+              color: "#555",
+              textDecoration: "none",
+            }}
+          >
+            Sign In
+          </Link>
           <button
             style={{
               background: "#C8102E",
@@ -86,9 +101,10 @@ export default function Header() {
               fontSize: "0.78rem",
               fontWeight: 600,
               cursor: "pointer",
+              fontFamily: "'DM Sans', sans-serif",
             }}
           >
-            Sign In
+            Sign Up
           </button>
         </div>
       </div>
