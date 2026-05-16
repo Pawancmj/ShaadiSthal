@@ -4,7 +4,7 @@ const links = {
   "Connect": ["Instagram", "Facebook", "Pinterest", "YouTube", "Twitter"],
 };
 
-export default function Footer() {
+export default function Footer(): React.ReactElement {
   return (
     <footer style={{
       background: "#111",

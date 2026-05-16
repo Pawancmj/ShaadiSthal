@@ -1,6 +1,6 @@
 import { Mail, Sparkles } from 'lucide-react';
 
-export default function DigitalInvitations() {
+export default function DigitalInvitations(): React.ReactElement {
   return (
     <section className="py-16 bg-gradient-to-r from-amber-50 to-rose-50">
       <div className="container mx-auto px-4">

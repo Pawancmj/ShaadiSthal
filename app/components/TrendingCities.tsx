@@ -5,7 +5,7 @@ const cities = [
   { name: "Jaipur", venues: "760+ Venues", img: "https://images.unsplash.com/photo-1599661046289-e31897846e41?w=400&q=80" },
 ];
 
-export default function TrendingCities() {
+export default function TrendingCities(): React.ReactElement {
   return (
     <section style={{
       maxWidth: 1160, margin: "0 auto",

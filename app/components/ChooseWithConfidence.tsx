@@ -5,7 +5,7 @@ const rows = [
   { label: "Rooms", a: "Around 40", b: "60+" },
 ];
 
-export default function ChooseWithConfidence() {
+export default function ChooseWithConfidence(): React.ReactElement {
   return (
     <section style={{
       maxWidth: 1160, margin: "0 auto",

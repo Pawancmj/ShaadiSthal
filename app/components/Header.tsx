@@ -12,7 +12,7 @@ const navLinks = [
   { label: "Planning", href: "/planning" },
 ];
 
-export default function Header() {
+export default function Header(): React.ReactElement {
   const pathname = usePathname();
 
   return (

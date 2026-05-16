@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import Header from "../../components/Header"; // Adjust path as needed
+import Header from "../../components/Header";
+import { ReactElement } from "react";
 
 const specializations = [
   { icon: "📸", label: "Candid", desc: "Unscripted emotional moments" },
@@ -10,14 +11,29 @@ const specializations = [
   { icon: "💑", label: "Pre-Wedding", desc: "Couture couple portraiture" },
 ];
 
-const packages = [
+interface Package {
+  feature: string;
+  essential: string;
+  royal: string;
+  imperial: string;
+}
+
+const packages: Package[] = [
   { feature: "Photographers", essential: "2 Artisans", royal: "4 Artisans", imperial: "6 Artisans" },
   { feature: "Event Coverage", essential: "1 Day", royal: "3 Days", imperial: "5 Days" },
   { feature: "Deliverables", essential: "Digital Gallery", royal: "Handmade Album + Film", imperial: "Luxury Box Set + VR Film" },
   { feature: "Starting Price", essential: "₹1.5L", royal: "₹3.5L", imperial: "₹7.5L" },
 ];
 
-const reviews = [
+interface Review {
+  stars: number;
+  text: string;
+  name: string;
+  event: string;
+  avatar: string;
+}
+
+const reviews: Review[] = [
   {
     stars: 5,
     text: "Vikram and his team felt like family. They captured every minute detail of our Udaipur wedding without being intrusive. The final album is a treasure.",
@@ -34,7 +50,7 @@ const reviews = [
   },
 ];
 
-export default function VendorDetailPage() {
+export default function VendorDetailPage(): ReactElement {
   return (
     <div className="vendor-detail">
       {/* Global Header */}

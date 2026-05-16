@@ -1,4 +1,4 @@
-export default function MobileApp() {
+export default function MobileApp(): React.ReactElement {
   return (
     <section style={{
       background: "#f8f7f5",

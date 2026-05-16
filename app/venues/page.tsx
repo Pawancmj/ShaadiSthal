@@ -2,8 +2,23 @@
 import { useState } from "react";
 import Link from "next/link";
 import Header from "../components/Header";
+import { ReactElement } from "react";
 
-const venues = [
+type Venue = {
+  id: number;
+  name: string;
+  location: string;
+  price: string;
+  rating: number;
+  tag: string | null;
+  tagColor?: string;
+  tagBg?: string;
+  description?: string;
+  img: string;
+  layout: "tall" | "wide";
+};
+
+const venues: Venue[] = [
   {
     id: 1,
     name: "The Royal Heritage Palace",
@@ -42,10 +57,10 @@ const venues = [
   },
 ];
 
-export default function VenuesPage() {
-  const [selectedCity, setSelectedCity] = useState("Delhi NCR");
-  const [capacity, setCapacity] = useState("300–600");
-  const [compared, setCompared] = useState([1]);
+export default function VenuesPage(): ReactElement {
+  const [selectedCity, setSelectedCity] = useState<string>("Delhi NCR");
+  const [capacity, setCapacity] = useState<string>("300–600");
+  const [compared, setCompared] = useState<number[]>([1]);
 
   const cities = ["Delhi NCR", "Mumbai", "Jaipur"];
   const capacities = ["100–300", "300–600", "600–1000", "1000+"];
@@ -326,7 +341,7 @@ const chatBtnStyle = {
   cursor: "pointer",
 };
 
-const viewDetailsBtnStyle = {
+const viewDetailsBtnStyle: React.CSSProperties = {
   background: "#C8102E", color: "#fff",
   border: "none", borderRadius: 6,
   padding: "8px 18px", fontSize: "0.75rem", fontWeight: 700,
@@ -335,7 +350,7 @@ const viewDetailsBtnStyle = {
   display: "inline-block",
 };
 
-function VenuesFooter() {
+function VenuesFooter(): ReactElement {
   return (
     <footer style={{ background: "#fff", borderTop: "1px solid #eee", padding: "48px 32px 24px", marginTop: 40 }}>
       <div style={{ maxWidth: 1160, margin: "0 auto" }}>

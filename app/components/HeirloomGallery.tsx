@@ -6,7 +6,7 @@ const images = [
   { src: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=500&q=80", alt: "Venue", tall: false },
 ];
 
-export default function HeirloomGallery() {
+export default function HeirloomGallery(): React.ReactElement {
   return (
     <section style={{
       maxWidth: 1160, margin: "0 auto",

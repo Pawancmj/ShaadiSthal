@@ -1,6 +1,7 @@
 "use client";
 import Header from "../components/Header";
 import Link from "next/link";
+import { ReactElement } from "react";
 
 const venues = [
   {
@@ -72,7 +73,7 @@ const venues = [
 
 const rowLabels = ["Starting Price", "Guest Capacity", "Guest Rating", "Venue Type", "Key Amenities"];
 
-export default function ComparisonPage() {
+export default function ComparisonPage(): ReactElement {
   return (
     <div className="comparison-page">
       <Header />

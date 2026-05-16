@@ -1,9 +1,22 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import Header from "../components/Header"; // Global header component
+import Header from "../components/Header";
+import { ReactElement } from "react";
 
-const vendorData = [
+interface Vendor {
+  id: number;
+  category: string;
+  name: string;
+  rating: number;
+  quote: string;
+  price: string;
+  badge: string | null;
+  badgeColor?: string;
+  img: string;
+}
+
+const vendorData: Vendor[] = [
   {
     id: 1,
     category: "Fine Art Photography",
@@ -49,10 +62,10 @@ const vendorData = [
 
 const categories = ["Photographers", "Makeup Artists", "Decorators"];
 
-export default function VendorsPage() {
-  const [selectedCat, setSelectedCat] = useState("Photographers");
-  const [city, setCity] = useState("Udaipur");
-  const [activePage, setActivePage] = useState(1);
+export default function VendorsPage(): ReactElement {
+  const [selectedCat, setSelectedCat] = useState<string>("Photographers");
+  const [city, setCity] = useState<string>("Udaipur");
+  const [activePage, setActivePage] = useState<number>(1);
 
   return (
     <div className="vendors-page">

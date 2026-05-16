@@ -1,4 +1,4 @@
-export default function Hero() {
+export default function Hero(): React.ReactElement {
   return (
     <section style={{
       position: "relative",

@@ -11,7 +11,7 @@ import LoveStories from "./components/LoveStories";
 import MobileApp from "./components/MobileApp";
 import Footer from "./components/Footer";
 
-export default function Home() {
+export default function Home(): React.ReactElement {
   return (
     <main>
       <Header />

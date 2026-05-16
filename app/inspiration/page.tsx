@@ -2,6 +2,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import Header from "../components/Header";
+import { ReactElement } from "react";
+
 const articles = [
   {
     id: 1,
@@ -57,8 +59,8 @@ const editorPicks = [
 
 const filterTabs = ["Traditions", "Decor Trends", "Jewelry Guide", "Real Stories", "Planning Tips"];
 
-export default function InspirationPage() {
-  const [activeTab, setActiveTab] = useState("Traditions");
+export default function InspirationPage(): ReactElement {
+  const [activeTab, setActiveTab] = useState<string>("Traditions");
 
   return (
     <div className="blog-page">

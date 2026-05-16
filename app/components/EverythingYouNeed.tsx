@@ -7,7 +7,7 @@ const services = [
   { label: "Jewelry", emoji: "💍" },
 ];
 
-export default function EverythingYouNeed() {
+export default function EverythingYouNeed(): React.ReactElement {
   return (
     <section style={{
       background: "#fafafa",

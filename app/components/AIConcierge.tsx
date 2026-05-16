@@ -1,4 +1,4 @@
-export default function AIConcierge() {
+export default function AIConcierge(): React.ReactElement {
   return (
     <section style={{ maxWidth: 1160, margin: "0 auto", padding: "0 32px 52px", fontFamily: "'DM Sans', sans-serif" }}>
       <div style={{

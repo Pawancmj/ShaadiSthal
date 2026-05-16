@@ -25,7 +25,7 @@ const venues = [
   },
 ];
 
-export default function FeaturedVenues() {
+export default function FeaturedVenues(): React.ReactElement {
   return (
     <section style={{
       maxWidth: 1160, margin: "0 auto",

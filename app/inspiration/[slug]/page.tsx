@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Header from "../../components/Header";
+import { ReactElement } from "react";
 
 const continueReading = [
   { title: "The Secret Language of Bridal Mehndi", img: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=500&q=80" },
@@ -14,11 +15,15 @@ const sidebarCards = [
   { title: "The Editor's Guide to Sustainable Gifting", img: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=300&q=80" },
 ];
 
-export default function ArticlePage({ params }) {
-  const { slug } = params; // Access the slug from URL
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [comment, setComment] = useState("");
+interface ArticlePageProps {
+  params: { slug: string };
+}
+
+export default function ArticlePage({ params }: ArticlePageProps): ReactElement {
+  const { slug } = params;
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [comment, setComment] = useState<string>("");
 
   return (
     <div className="article-page">

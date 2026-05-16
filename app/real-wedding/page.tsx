@@ -1,8 +1,20 @@
 "use client";
 import Header from "../components/Header";
 import Link from "next/link";
+import { ReactElement } from "react";
 
-const weddings = [
+interface Wedding {
+  id: number;
+  names: string;
+  style: string;
+  location: string;
+  quote: string;
+  img: string;
+  imgHeight: number;
+  slug: string;
+}
+
+const weddings: Wedding[] = [
   {
     id: 1,
     names: "Anjali & Rohit",
@@ -45,7 +57,7 @@ const weddings = [
   },
 ];
 
-export default function RealWeddingsPage() {
+export default function RealWeddingsPage(): ReactElement {
   return (
     <div className="real-weddings-page">
       <Header />

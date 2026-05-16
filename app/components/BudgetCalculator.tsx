@@ -1,4 +1,4 @@
-export default function BudgetCalculator() {
+export default function BudgetCalculator(): React.ReactElement {
   return (
     <section style={{
       background: "#1a1a1a",

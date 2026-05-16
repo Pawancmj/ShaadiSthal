@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Header from "../components/Header";
+import { ReactElement } from "react";
 
 const filterTabs = ["All", "Decor", "Outfits", "Jewelry", "Venues", "Photography", "Mehndi"];
 
@@ -16,8 +17,8 @@ const galleryItems = [
   { id: 7, src: "https://images.unsplash.com/photo-1478146059778-26028b07395a?w=600&q=80", alt: "Wedding venue chandelier", tall: true, col: 3 },
 ];
 
-export default function GalleryPage() {
-  const [activeFilter, setActiveFilter] = useState("All");
+export default function GalleryPage(): ReactElement {
+  const [activeFilter, setActiveFilter] = useState<string>("All");
 
   return (
     <div className="gallery-page">

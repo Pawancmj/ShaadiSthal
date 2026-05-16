@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Header from "../../components/Header";
+import { ReactElement } from "react";
 
 const dreamTeam = [
   { role: "Venue", name: "Taj Lake Palace", sub: "Udaipur, Rajasthan", link: "View Venue", img: "https://images.unsplash.com/photo-1477587458883-47145ed31f2e?w=80&q=80" },
@@ -18,8 +19,8 @@ const moreStories = [
 
 const diaryTabs = ["The Vows", "The Sangeet", "The Mehndi"];
 
-export default function InsideRealWedding() {
-  const [activeTab, setActiveTab] = useState("The Vows");
+export default function InsideRealWedding(): ReactElement {
+  const [activeTab, setActiveTab] = useState<string>("The Vows");
 
   return (
     <div className="rw-detail">

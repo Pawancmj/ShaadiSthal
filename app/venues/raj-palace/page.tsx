@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Header from "../../components/Header";
+import { ReactElement, CSSProperties } from "react";
 
 const amenities = [
   { icon: "❄️", label: "AC Hall" },
@@ -42,8 +43,31 @@ const calendarDays = [
   { day: 12 }, { day: 13 }, { day: 14 }, { day: 15 }, { day: 16 }, { day: 17 }, { day: 18 },
 ];
 
-export default function VenueDetailPage() {
-  const [selectedDay, setSelectedDay] = useState(8);
+export default function VenueDetailPage(): ReactElement {
+  const [selectedDay, setSelectedDay] = useState<number>(8);
+
+  const labelStyle: CSSProperties = {
+    display: "block", fontSize: "0.68rem",
+    color: "#aaa", textTransform: "uppercase",
+    letterSpacing: "0.06em", marginBottom: 5,
+  };
+
+  const inputStyle: CSSProperties = {
+    width: "100%", padding: "9px 12px",
+    border: "none", borderBottom: "1.5px solid #e8e8e8",
+    outline: "none", fontSize: "0.82rem",
+    color: "#333", fontFamily: "'DM Sans', sans-serif",
+    background: "transparent",
+  };
+
+  const textActionBtn: CSSProperties = {
+    background: "none", border: "none",
+    fontSize: "0.68rem", fontWeight: 700,
+    color: "#888", cursor: "pointer",
+    display: "flex", alignItems: "center", gap: 5,
+    letterSpacing: "0.05em",
+    fontFamily: "'DM Sans', sans-serif",
+  };
 
   return (
     <div style={{ fontFamily: "'DM Sans', sans-serif", background: "#fff", minHeight: "100vh" }}>
@@ -320,26 +344,3 @@ export default function VenueDetailPage() {
     </div>
   );
 }
-
-const labelStyle = {
-  display: "block", fontSize: "0.68rem",
-  color: "#aaa", textTransform: "uppercase",
-  letterSpacing: "0.06em", marginBottom: 5,
-};
-
-const inputStyle = {
-  width: "100%", padding: "9px 12px",
-  border: "none", borderBottom: "1.5px solid #e8e8e8",
-  outline: "none", fontSize: "0.82rem",
-  color: "#333", fontFamily: "'DM Sans', sans-serif",
-  background: "transparent",
-};
-
-const textActionBtn = {
-  background: "none", border: "none",
-  fontSize: "0.68rem", fontWeight: 700,
-  color: "#888", cursor: "pointer",
-  display: "flex", alignItems: "center", gap: 5,
-  letterSpacing: "0.05em",
-  fontFamily: "'DM Sans', sans-serif",
-};

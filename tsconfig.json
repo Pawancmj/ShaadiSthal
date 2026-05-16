@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
+    "allowJs": false,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "app/page.jsx", "app/layout.jsx", "app/components/Header.jsx", "app/components/Hero.jsx", "app/components/AIConcierge.jsx", "app/components/BudgetCalculator.jsx", "app/components/ChooseWithConfidence.jsx", "app/components/DigitalInvitations.jsx", "app/components/EverythingYouNeed.jsx", "app/components/FeaturedVenues.jsx", "app/components/Footer.jsx", "app/components/HeirloomGallery.jsx", "app/components/LoveStories.jsx", "app/components/MobileApp.jsx", "app/components/SocialMedia.jsx", "app/components/TrendingCities.jsx"  ],
+  ],
   "exclude": ["node_modules"]
 }

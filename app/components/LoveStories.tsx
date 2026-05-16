@@ -3,7 +3,7 @@ const stories = [
   { title: "A Royal Delhi Soiree", date: "December 2024", img: "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=700&q=80" },
 ];
 
-export default function LoveStories() {
+export default function LoveStories(): React.ReactElement {
   return (
     <section style={{
       maxWidth: 1160, margin: "0 auto",
