@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Header from "../../components/Header";
 import { ReactElement } from "react";
+import Footer from "../../components/Footer";
 
 const dreamTeam = [
   { role: "Venue", name: "Taj Lake Palace", sub: "Udaipur, Rajasthan", link: "View Venue", img: "https://images.unsplash.com/photo-1477587458883-47145ed31f2e?w=80&q=80" },
@@ -167,34 +168,7 @@ export default function InsideRealWedding(): ReactElement {
           ))}
         </div>
       </div>
-
-      {/* ── FOOTER ── */}
-      <footer className="blog-footer">
-        <div className="blog-footer__inner">
-          <div className="blog-footer__grid">
-            <div>
-              <span className="blog-footer__logo">ShadiSthal</span>
-              <p className="blog-footer__desc">India's premier wedding editorial platform, dedicated to preserving heritage through modern storytelling.</p>
-              <div className="blog-footer__social">
-                {["↗", "📷", "▶"].map((icon, i) => (
-                  <button key={i} className="blog-footer__social-btn">{icon}</button>
-                ))}
-              </div>
-            </div>
-            {[
-              { title: "Navigation", items: ["About Us", "Press Enquiries", "Editorial Policy"] },
-              { title: "Legal", items: ["Privacy", "Terms of Service"] },
-              { title: "Contact", items: ["Editorial HQ: New Delhi", "hello@shadisthal.com"] },
-            ].map(({ title, items }) => (
-              <div key={title} className="blog-footer__col">
-                <p className="blog-footer__col-title">{title}</p>
-                <ul>{items.map(i => <li key={i}><a href="#">{i}</a></li>)}</ul>
-              </div>
-            ))}
-          </div>
-          <div className="blog-footer__bottom">© 2024 ShadiSthal Editorial. All rights reserved.</div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

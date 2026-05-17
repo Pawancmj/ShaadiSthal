@@ -9,7 +9,7 @@ const navLinks = [
   { label: "Comparison", href: "/comparison" },
   { label: "Inspiration", href: "/inspiration" },
   { label: "Gallery", href: "/gallery" },
-  { label: "Planning", href: "/planning" },
+  { label: "Planner", href: "/planner" },
 ];
 
 export default function Header(): React.ReactElement {
@@ -17,6 +17,7 @@ export default function Header(): React.ReactElement {
 
   return (
     <header
+      className="site-header"
       style={{
         position: "sticky",
         top: 0,
@@ -29,6 +30,7 @@ export default function Header(): React.ReactElement {
       }}
     >
       <div
+        className="site-header__inner"
         style={{
           maxWidth: 1160,
           margin: "0 auto",
@@ -42,6 +44,7 @@ export default function Header(): React.ReactElement {
         {/* Logo */}
         <Link href="/" style={{ textDecoration: "none" }}>
           <span
+            className="site-header__brand"
             style={{
               fontFamily: "'Playfair Display', serif",
               fontSize: "1.15rem",
@@ -54,7 +57,7 @@ export default function Header(): React.ReactElement {
         </Link>
 
         {/* Navigation Links */}
-        <nav style={{ display: "flex", gap: 24, alignItems: "center" }}>
+        <nav className="site-header__nav" style={{ display: "flex", gap: 24, alignItems: "center" }}>
           {navLinks.map((item) => {
             const isActive =
               pathname === item.href || pathname.startsWith(item.href + "/");
@@ -79,9 +82,9 @@ export default function Header(): React.ReactElement {
         </nav>
 
         {/* Right side */}
-        <div style={{ display: "flex", alignItems: "center", gap: 12, flexShrink: 0 }}>
+        <div className="site-header__actions" style={{ display: "flex", alignItems: "center", gap: 12, flexShrink: 0 }}>
           <Link
-            href="/sign-in"
+            href="/signin"
             style={{
               fontSize: "0.78rem",
               fontWeight: 500,
@@ -91,21 +94,24 @@ export default function Header(): React.ReactElement {
           >
             Sign In
           </Link>
-          <button
-            style={{
-              background: "#C8102E",
-              color: "#fff",
-              border: "none",
-              borderRadius: 6,
-              padding: "6px 16px",
-              fontSize: "0.78rem",
-              fontWeight: 600,
-              cursor: "pointer",
-              fontFamily: "'DM Sans', sans-serif",
-            }}
-          >
-            Sign Up
-          </button>
+          <Link href="/signup">
+            <button
+              className="site-header__button"
+              style={{
+                background: "#C8102E",
+                color: "#fff",
+                border: "none",
+                borderRadius: 6,
+                padding: "6px 16px",
+                fontSize: "0.78rem",
+                fontWeight: 600,
+                cursor: "pointer",
+                fontFamily: "'DM Sans', sans-serif",
+              }}
+            >
+              Sign Up
+            </button>
+          </Link>
         </div>
       </div>
     </header>

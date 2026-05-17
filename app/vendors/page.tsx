@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Header from "../components/Header";
 import { ReactElement } from "react";
+import Footer from "../components/Footer";
 
 interface Vendor {
   id: number;
@@ -251,39 +252,7 @@ export default function VendorsPage(): ReactElement {
           </div>
         </div>
       </div>
-
-      {/* Footer */}
-      <footer className="footer">
-        <div className="footer__inner">
-          <div className="footer__grid">
-            <div>
-              <span className="footer__brand-name">ShaadiSthal</span>
-              <p className="footer__brand-tagline">
-                "Curating elegance, documenting heritage, and celebrating the union of souls in regal splendor."
-              </p>
-            </div>
-            {[
-              { title: "Company", items: ["About Us", "Careers", "Privacy Policy", "Terms of Service"] },
-              { title: "Support", items: ["Vendor Help Desk", "User Guidelines", "Contact Support", "FAQs"] },
-              { title: "Connect", items: ["Instagram", "Pinterest", "Newsletter"] },
-            ].map(({ title, items }) => (
-              <div key={title} className="footer__col">
-                <p className="footer__col-title">{title}</p>
-                <ul>
-                  {items.map((i) => (
-                    <li key={i}>
-                      <a href="#">{i}</a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div className="footer__bottom">
-            © 2024 ShaadiSthal Heritage Pvt Ltd. All rights reserved.
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 export default function Hero(): React.ReactElement {
   return (
-    <section style={{
+    <section className="home-hero" style={{
       position: "relative",
       height: 520,
       backgroundImage: "url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1600&q=80')",
@@ -12,7 +12,7 @@ export default function Hero(): React.ReactElement {
       fontFamily: "'DM Sans', sans-serif",
     }}>
       {/* Overlay */}
-      <div style={{
+      <div className="home-hero__content" style={{
         position: "absolute", inset: 0,
         background: "linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.55))",
       }} />
@@ -37,7 +37,7 @@ export default function Hero(): React.ReactElement {
         </h1>
 
         {/* Search Bar */}
-        <div style={{
+        <div className="home-search" style={{
           display: "flex",
           alignItems: "stretch",
           background: "#fff",
@@ -48,7 +48,7 @@ export default function Hero(): React.ReactElement {
           margin: "0 auto",
         }}>
           {/* City Field */}
-          <div style={{
+          <div className="home-search__field" style={{
             display: "flex", alignItems: "center", gap: 8,
             padding: "0 16px", flex: 1,
             borderRight: "1px solid #e8e8e8",
@@ -71,7 +71,7 @@ export default function Hero(): React.ReactElement {
           </div>
 
           {/* Venue Field */}
-          <div style={{
+          <div className="home-search__field" style={{
             display: "flex", alignItems: "center", gap: 8,
             padding: "0 16px", flex: 1,
           }}>
@@ -92,7 +92,7 @@ export default function Hero(): React.ReactElement {
           </div>
 
           {/* Button */}
-          <button style={{
+          <button className="home-search__button" style={{
             background: "#C8102E", color: "#fff",
             border: "none", cursor: "pointer",
             padding: "0 22px",

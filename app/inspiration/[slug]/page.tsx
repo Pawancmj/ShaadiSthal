@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Header from "../../components/Header";
 import { ReactElement } from "react";
+import Footer from "../../components/Footer";
 
 const continueReading = [
   { title: "The Secret Language of Bridal Mehndi", img: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=500&q=80" },
@@ -173,44 +174,7 @@ export default function ArticlePage({ params }: ArticlePageProps): ReactElement 
           </div>
         </div>
       </div>
-
-      {/* FOOTER */}
-      <footer className="article-footer">
-        <div className="article-footer__inner">
-          <div className="article-footer__grid">
-            <div>
-              <span className="article-footer__logo">ShaadiSthal</span>
-              <p className="article-footer__desc">The premier destination for the discerning Indian couple. Editorial. Excellence in wedding planning.</p>
-              <div className="article-footer__social">
-                {["↗", "📷", "▶"].map((icon, i) => (
-                  <button key={i} className="article-footer__social-btn">{icon}</button>
-                ))}
-              </div>
-            </div>
-            {[
-              { title: "Editorial", items: ["About Us", "Press Enquiries", "Editorial Policy"] },
-              { title: "Legal", items: ["Privacy", "Terms of Service"] },
-              { title: "Connect", items: [] },
-            ].map(({ title, items }) => (
-              <div key={title}>
-                <p className="article-footer__col-title">{title}</p>
-                {title === "Connect" ? (
-                  <div style={{ display: "flex", gap: 8, marginTop: 4 }}>
-                    {["↗", "📷", "▶"].map((icon, i) => (
-                      <button key={i} className="article-footer__social-btn">{icon}</button>
-                    ))}
-                  </div>
-                ) : (
-                  <ul className="article-footer__col">
-                    {items.map(i => <li key={i}><a href="#">{i}</a></li>)}
-                  </ul>
-                )}
-              </div>
-            ))}
-          </div>
-          <div className="article-footer__bottom">© 2024 ShaadiSthal Editorial. All rights reserved.</div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

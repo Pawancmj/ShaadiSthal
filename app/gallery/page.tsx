@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Header from "../components/Header";
 import { ReactElement } from "react";
+import Footer from "../components/Footer";
 
 const filterTabs = ["All", "Decor", "Outfits", "Jewelry", "Venues", "Photography", "Mehndi"];
 
@@ -96,19 +97,7 @@ export default function GalleryPage(): ReactElement {
       <div className="gallery-discover">
         <p className="gallery-discover__text">Discover More Treasures</p>
       </div>
-
-      {/* ── FOOTER ── */}
-      <footer className="gallery-footer">
-        <div className="gallery-footer__inner">
-          <span className="gallery-footer__logo">ShadiSthal</span>
-          <div className="gallery-footer__links">
-            {["About Us", "Vendor Login", "Privacy Policy", "Contact", "Terms of Service"].map((item) => (
-              <a key={item} href="#">{item}</a>
-            ))}
-          </div>
-          <p className="gallery-footer__copy">© 2024 ShadiSthal Editorial. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

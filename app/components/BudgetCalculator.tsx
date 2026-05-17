@@ -1,6 +1,6 @@
 export default function BudgetCalculator(): React.ReactElement {
   return (
-    <section style={{
+    <section className="budget-section" style={{
       background: "#1a1a1a",
       textAlign: "center",
       padding: "64px 32px",

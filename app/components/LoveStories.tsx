@@ -5,13 +5,13 @@ const stories = [
 
 export default function LoveStories(): React.ReactElement {
   return (
-    <section style={{
+    <section className="home-section" style={{
       maxWidth: 1160, margin: "0 auto",
       padding: "52px 32px",
       fontFamily: "'DM Sans', sans-serif",
     }}>
       {/* Header */}
-      <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: 24 }}>
+      <div className="home-section__header" style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: 24 }}>
         <div>
           <div style={{ width: 36, height: 3, background: "#C8102E", borderRadius: 2, marginBottom: 8 }} />
           <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.5rem", fontWeight: 700, color: "#111" }}>
@@ -27,9 +27,9 @@ export default function LoveStories(): React.ReactElement {
       </div>
 
       {/* Cards */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+      <div className="story-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
         {stories.map((s) => (
-          <a key={s.title} href="#" style={{
+          <a className="story-card" key={s.title} href="#" style={{
             position: "relative",
             borderRadius: 16, overflow: "hidden",
             height: 280, display: "block",

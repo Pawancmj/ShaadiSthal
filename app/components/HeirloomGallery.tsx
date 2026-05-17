@@ -8,7 +8,7 @@ const images = [
 
 export default function HeirloomGallery(): React.ReactElement {
   return (
-    <section style={{
+    <section className="home-section" style={{
       maxWidth: 1160, margin: "0 auto",
       padding: "52px 32px",
       fontFamily: "'DM Sans', sans-serif",
@@ -21,7 +21,7 @@ export default function HeirloomGallery(): React.ReactElement {
         The Heirloom Gallery
       </h2>
 
-      <div style={{
+      <div className="heirloom-grid" style={{
         display: "grid",
         gridTemplateColumns: "repeat(3, 1fr)",
         gridTemplateRows: "180px 180px",
@@ -30,6 +30,7 @@ export default function HeirloomGallery(): React.ReactElement {
         {images.map((img, i) => (
           <div
             key={i}
+            className="heirloom-grid__item"
             style={{
               borderRadius: 10, overflow: "hidden",
               cursor: "pointer",
@@ -39,6 +40,7 @@ export default function HeirloomGallery(): React.ReactElement {
             <img
               src={img.src}
               alt={img.alt}
+              className="heirloom-grid__image"
               style={{
                 width: "100%",
                 height: img.tall ? "370px" : "180px",

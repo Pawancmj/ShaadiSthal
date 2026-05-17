@@ -13,7 +13,7 @@ export default function Footer(): React.ReactElement {
     }}>
       <div style={{ maxWidth: 1160, margin: "0 auto" }}>
         {/* Grid */}
-        <div style={{
+        <div className="app-footer-grid" style={{
           display: "grid",
           gridTemplateColumns: "1.6fr 1fr 1fr 1fr",
           gap: 40, marginBottom: 40,
@@ -55,13 +55,13 @@ export default function Footer(): React.ReactElement {
         </div>
 
         {/* Bottom bar */}
-        <div style={{
+        <div className="app-footer-bottom" style={{
           borderTop: "1px solid #222", paddingTop: 20,
           display: "flex", alignItems: "center", justifyContent: "space-between",
           flexWrap: "wrap", gap: 12,
         }}>
           <p style={{ fontSize: "0.7rem", color: "#444" }}>© 2024 Shaadified. All rights reserved.</p>
-          <div style={{ display: "flex", gap: 20 }}>
+          <div className="app-footer-links" style={{ display: "flex", gap: 20 }}>
             {["Privacy Policy", "Terms of Service", "Cookie Policy"].map((item) => (
               <a key={item} href="#" style={{ fontSize: "0.7rem", color: "#444", textDecoration: "none" }}>
                 {item}

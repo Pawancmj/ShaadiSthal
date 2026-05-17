@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Header from "../../components/Header";
 import { ReactElement, CSSProperties } from "react";
+import Footer from "../../components/Footer";
 
 const amenities = [
   { icon: "❄️", label: "AC Hall" },
@@ -328,19 +329,7 @@ export default function VenueDetailPage(): ReactElement {
           </div>
         </div>
       </div>
-
-      {/* Footer */}
-      <footer style={{ background: "#f9f8f6", borderTop: "1px solid #eee", padding: "32px 24px 20px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", textAlign: "center" }}>
-          <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.2rem", fontWeight: 700, color: "#C8102E", display: "block", marginBottom: 16 }}>ShaadiSthal</span>
-          <div style={{ display: "flex", justifyContent: "center", gap: 28, marginBottom: 16 }}>
-            {["Privacy Policy", "Terms of Service", "Refund Policy", "Contact Us"].map(item => (
-              <a key={item} href="#" style={{ fontSize: "0.72rem", color: "#888", textDecoration: "none" }}>{item}</a>
-            ))}
-          </div>
-          <p style={{ fontSize: "0.65rem", color: "#ccc", letterSpacing: "0.06em" }}>© 2024 SHAADISTHAL LUXURY WEDDINGS PVT LTD. ALL RIGHTS RESERVED.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

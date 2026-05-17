@@ -1,11 +1,11 @@
 export default function MobileApp(): React.ReactElement {
   return (
-    <section style={{
+    <section className="mobile-app-section" style={{
       background: "#f8f7f5",
       padding: "60px 32px",
       fontFamily: "'DM Sans', sans-serif",
     }}>
-      <div style={{
+      <div className="mobile-app-inner" style={{
         maxWidth: 1160, margin: "0 auto",
         display: "flex", alignItems: "center",
         gap: 60, flexWrap: "wrap",
@@ -21,7 +21,7 @@ export default function MobileApp(): React.ReactElement {
           <p style={{ fontSize: "0.82rem", color: "#666", lineHeight: 1.7, maxWidth: 340, marginBottom: 24 }}>
             Download the Shaadified app to chat with our AI, track vendors, and manage your checklist from anywhere.
           </p>
-          <div style={{ display: "flex", gap: 10 }}>
+          <div className="mobile-store-buttons" style={{ display: "flex", gap: 10 }}>
             {[
               { label: "App Store", icon: "🍎" },
               { label: "Play Store", icon: "▶" },
@@ -42,7 +42,7 @@ export default function MobileApp(): React.ReactElement {
         </div>
 
         {/* Right – decorative grid */}
-        <div style={{ flexShrink: 0 }}>
+        <div className="mobile-pattern-wrap" style={{ flexShrink: 0 }}>
           <div style={{
             display: "grid",
             gridTemplateColumns: "repeat(4, 40px)",

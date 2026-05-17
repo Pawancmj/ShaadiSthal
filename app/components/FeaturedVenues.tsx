@@ -27,13 +27,13 @@ const venues = [
 
 export default function FeaturedVenues(): React.ReactElement {
   return (
-    <section style={{
+    <section className="home-section" style={{
       maxWidth: 1160, margin: "0 auto",
       padding: "52px 32px",
       fontFamily: "'DM Sans', sans-serif",
     }}>
       {/* Header */}
-      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 28 }}>
+      <div className="featured-header" style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 28 }}>
         <div>
           <div style={{ width: 36, height: 3, background: "#C8102E", borderRadius: 2, marginBottom: 8 }} />
           <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.5rem", fontWeight: 700, color: "#111" }}>
@@ -43,7 +43,7 @@ export default function FeaturedVenues(): React.ReactElement {
             Handpicked venues that blend elegance, comfort and timeless luxury for your celebration.
           </p>
         </div>
-        <div style={{ display: "flex", gap: 8, flexShrink: 0 }}>
+        <div className="featured-filters" style={{ display: "flex", gap: 8, flexShrink: 0 }}>
           {["By Budget", "By Capacity", "By Rating"].map((f) => (
             <button key={f} style={{
               fontSize: "0.72rem", padding: "5px 12px",
@@ -58,9 +58,9 @@ export default function FeaturedVenues(): React.ReactElement {
       </div>
 
       {/* Cards */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+      <div className="featured-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
         {venues.map((v) => (
-          <div key={v.name} style={{
+          <div className="featured-card" key={v.name} style={{
             borderRadius: 12, overflow: "hidden",
             boxShadow: "0 2px 14px rgba(0,0,0,0.09)",
             background: "#fff", cursor: "pointer",
@@ -82,7 +82,7 @@ export default function FeaturedVenues(): React.ReactElement {
             <div style={{ padding: "14px 16px" }}>
               <h3 style={{ fontSize: "0.92rem", fontWeight: 600, color: "#111" }}>{v.name}</h3>
               <p style={{ fontSize: "0.72rem", color: "#999", marginTop: 2, marginBottom: 10 }}>{v.location}</p>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <div className="featured-card__footer" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                 <div>
                   <span style={{ fontSize: "0.95rem", fontWeight: 700, color: "#C8102E" }}>{v.price}</span>
                   <span style={{ fontSize: "0.68rem", color: "#aaa", marginLeft: 4 }}>{v.note}</span>

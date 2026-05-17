@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Header from "../../components/Header";
 import { ReactElement } from "react";
+import Footer from "../../components/Footer";
 
 const specializations = [
   { icon: "📸", label: "Candid", desc: "Unscripted emotional moments" },
@@ -257,59 +258,7 @@ export default function VendorDetailPage(): ReactElement {
           </div>
         </div>
       </div>
-
-      {/* Footer */}
-      <footer className="vendor-detail__footer">
-        <div className="vendor-detail__footer-inner">
-          <div className="vendor-detail__footer-grid">
-            <div>
-              <span className="vendor-footer__brand-name">ShaadiSthal</span>
-              <p className="vendor-footer__brand-desc">
-                A curated marketplace for luxury wedding services, dedicated to preserving heritage and celebrating modern love.
-              </p>
-              <div className="vendor-footer__social">
-                {["f", "p", "i"].map((s) => (
-                  <button key={s} className="vendor-footer__social-btn">{s}</button>
-                ))}
-              </div>
-            </div>
-            {[
-              { title: "Explore", items: ["Bridal Couture", "Imperial Venues", "Jewelry Houses", "Floral Artisans"] },
-              { title: "Company", items: ["Our Story", "Brand Standards", "Concierge Service", "Contact"] },
-            ].map(({ title, items }) => (
-              <div key={title} className="vendor-footer__col">
-                <p className="vendor-footer__col-title">{title}</p>
-                <ul>
-                  {items.map((i) => (
-                    <li key={i}>
-                      <a href="#">{i}</a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-            <div>
-              <p className="newsletter-label">Stay Inspired</p>
-              <p className="newsletter-desc">Join our editorial digest for exclusive royal wedding insights.</p>
-              <div className="newsletter-input-row">
-                <input type="email" placeholder="Your email address" className="newsletter-input" />
-                <button className="newsletter-submit">
-                  <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="vendor-detail__footer-bottom">
-            <p>© 2024 ShaadiSthal. All rights reserved.</p>
-            <div className="vendor-detail__footer-bottom-links">
-              <a href="#">Privacy Policy</a>
-              <a href="#">Terms of Elegance</a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

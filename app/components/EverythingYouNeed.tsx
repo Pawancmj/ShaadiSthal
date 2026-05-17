@@ -9,7 +9,7 @@ const services = [
 
 export default function EverythingYouNeed(): React.ReactElement {
   return (
-    <section style={{
+    <section className="everything-section" style={{
       background: "#fafafa",
       padding: "52px 32px",
       fontFamily: "'DM Sans', sans-serif",
@@ -23,12 +23,12 @@ export default function EverythingYouNeed(): React.ReactElement {
           Everything You Need
         </h2>
 
-        <div style={{
+        <div className="service-grid" style={{
           display: "flex", justifyContent: "center",
           gap: 40, flexWrap: "wrap",
         }}>
           {services.map((s) => (
-            <a key={s.label} href="#" style={{
+            <a className="service-link" key={s.label} href="#" style={{
               display: "flex", flexDirection: "column",
               alignItems: "center", gap: 8,
               textDecoration: "none", cursor: "pointer",
