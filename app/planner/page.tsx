@@ -223,7 +223,7 @@ export default function PlannerPage(): React.ReactElement {
               </div>
               <div className="planner-moodboard__small">
                 <img
-                  src="https://images.unsplash.com/photo-1614886137799-1bee2c31de25?w=600&q=80"
+                  src="https://images.unsplash.com/photo-1595349603091-a15d03875865?w=600&q=80"
                   alt="Bridal lehenga"
                 />
               </div>

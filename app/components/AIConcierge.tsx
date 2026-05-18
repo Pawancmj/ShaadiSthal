@@ -29,7 +29,7 @@ export default function AIConcierge(): React.ReactElement {
       style={{
         maxWidth: 1160,
         margin: "0 auto",
-        padding: "0 32px 52px",
+        padding: "52px 32px 52px",
         fontFamily: "'DM Sans', sans-serif",
       }}
     >

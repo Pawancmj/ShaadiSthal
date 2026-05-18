@@ -1,63 +1,113 @@
+import React from 'react';
+
 export default function MobileApp(): React.ReactElement {
+  const gridSquares = Array.from({ length: 25 }).map((_, i) => {
+    // 5x5 grid
+    // Row 2 (indices 5-9): empty at 6, 8
+    // Row 4 (indices 15-19): empty at 16, 17, 18
+    const isEmpty = [6, 8, 16, 17, 18].includes(i);
+    return (
+      <div
+        key={i}
+        style={{
+          width: '28px',
+          height: '28px',
+          backgroundColor: isEmpty ? 'transparent' : '#4d4d4d',
+          borderRadius: '4px'
+        }}
+      />
+    );
+  });
+
   return (
     <section className="mobile-app-section" style={{
-      background: "#f8f7f5",
-      padding: "60px 32px",
+      backgroundColor: '#f8f7f5',
+      padding: '40px 20px',
       fontFamily: "'DM Sans', sans-serif",
     }}>
       <div className="mobile-app-inner" style={{
-        maxWidth: 1160, margin: "0 auto",
-        display: "flex", alignItems: "center",
-        gap: 60, flexWrap: "wrap",
+        margin: '0 auto',
+        backgroundColor: '#e8e6e1',
+        borderRadius: '20px',
+        maxWidth: '1000px',
+        width: '100%',
+        padding: '50px 60px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        gap: '40px'
       }}>
-        {/* Left */}
-        <div style={{ flex: 1, minWidth: 280 }}>
+        {/* Left Content */}
+        <div style={{ maxWidth: '520px' }}>
           <h2 style={{
             fontFamily: "'Playfair Display', serif",
-            fontSize: "1.6rem", fontWeight: 700, marginBottom: 12,
+            fontSize: '2.4rem',
+            color: '#2a2a2a',
+            margin: '0 0 16px 0',
+            fontWeight: 500,
           }}>
             Wedding Planning in Your Pocket.
           </h2>
-          <p style={{ fontSize: "0.82rem", color: "#666", lineHeight: 1.7, maxWidth: 340, marginBottom: 24 }}>
-            Download the Shaadified app to chat with our AI, track vendors, and manage your checklist from anywhere.
+          <p style={{
+            fontSize: '1.05rem',
+            color: '#6a6561',
+            lineHeight: '1.6',
+            margin: '0 0 32px 0'
+          }}>
+            Receive real-time RSVP updates, chat with vendors on the go, and manage your checklist from anywhere.
           </p>
-          <div className="mobile-store-buttons" style={{ display: "flex", gap: 10 }}>
-            {[
-              { label: "App Store", icon: "🍎" },
-              { label: "Play Store", icon: "▶" },
-            ].map(({ label, icon }) => (
-              <button key={label} style={{
-                display: "inline-flex", alignItems: "center", gap: 8,
-                background: "#1a1a1a", color: "#fff",
-                padding: "10px 20px", borderRadius: 8,
-                fontSize: "0.78rem", fontWeight: 600,
-                border: "none", cursor: "pointer",
-                fontFamily: "'DM Sans', sans-serif",
-              }}>
-                <span>{icon}</span>
-                {label}
-              </button>
-            ))}
+          <div className="mobile-store-buttons" style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+            <button style={{
+              backgroundColor: '#1c1c1c',
+              color: '#ffffff',
+              border: 'none',
+              padding: '12px 24px',
+              borderRadius: '6px',
+              fontSize: '0.95rem',
+              fontWeight: 600,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              cursor: 'pointer',
+              fontFamily: "'DM Sans', sans-serif",
+            }}>
+              <span style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.5px' }}>iOS</span> App Store
+            </button>
+            <button style={{
+              backgroundColor: '#1c1c1c',
+              color: '#ffffff',
+              border: 'none',
+              padding: '12px 24px',
+              borderRadius: '6px',
+              fontSize: '0.95rem',
+              fontWeight: 600,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              cursor: 'pointer',
+              fontFamily: "'DM Sans', sans-serif",
+            }}>
+              <svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.5 1.5L10.5 7L1.5 12.5V1.5Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              Play Store
+            </button>
           </div>
         </div>
 
-        {/* Right – decorative grid */}
-        <div className="mobile-pattern-wrap" style={{ flexShrink: 0 }}>
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 40px)",
-            gap: 6,
-          }}>
-            {Array.from({ length: 12 }).map((_, i) => {
-              const colors = ["#C8102E22", "#D4A01722", "#1a1a1a12", "#E91E8C18"];
-              return (
-                <div key={i} style={{
-                  width: 40, height: 40, borderRadius: 6,
-                  background: colors[i % colors.length],
-                }} />
-              );
-            })}
-          </div>
+        {/* Right Content - Grid Graphic */}
+        <div className="mobile-pattern-wrap" style={{
+          backgroundColor: '#ffffff',
+          padding: '20px',
+          borderRadius: '16px',
+          boxShadow: '0 12px 32px rgba(0,0,0,0.08)',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(5, 28px)',
+          gap: '6px',
+          flexShrink: 0
+        }}>
+          {gridSquares}
         </div>
       </div>
     </section>

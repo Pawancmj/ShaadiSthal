@@ -176,9 +176,9 @@ input, select, textarea { font-family: var(--font-body); }
 .planner-hero__actions a span { margin-left: 8px; font-size: 1.08rem; line-height: 0; vertical-align: -1px; }
 .planner-hero__actions a:first-child { background: #d3065d; color: #fff; box-shadow: 0 12px 28px rgba(211, 6, 93, 0.28); }
 .planner-hero__actions a:last-child { background: #ffe188; color: #3d311a; }
-.planner-console { max-width: 1100px; position: relative; z-index: 2; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 18px 50px rgba(0,0,0,0.32); }
-.planner-console__tabs { display: grid; grid-template-columns: 1fr 1fr; background: #fff; }
-.planner-console__tab { border: 0; border-bottom: 2px solid transparent; background: #fff; padding: 24px 20px; color: #8b8179; font-size: 0.82rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+.planner-console { max-width: 1100px; margin: 0 auto 40px; position: relative; z-index: 2; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+.planner-console__tabs { display: grid; grid-template-columns: 1fr 1fr; background: #fff; border-bottom: 1px solid #f0f0f0; }
+.planner-console__tab { border: 0; border-bottom: 2px solid transparent; background: #fff; padding: 24px 20px; color: #8b8179; font-size: 0.82rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; }
 .planner-console__tab--active { background: #fff5fa; border-bottom-color: #d3065d; color: #d3065d; }
 .planner-console__body { display: grid; grid-template-columns: minmax(0, 1fr) 360px; min-height: 500px; }
 .planner-chat { display: flex; flex-direction: column; gap: 22px; padding: 30px 34px; background: #fff; }
@@ -250,16 +250,16 @@ input, select, textarea { font-family: var(--font-body); }
 .planner-budget-list li:nth-child(3) span { background: #efd5dc; }
 .planner-budget-list strong { margin-left: auto; color: #3f3935; }
 .planner-check-item { padding: 10px 0; }
-.planner-itinerary { max-width: 1160px; margin: 0 auto 72px; padding: 74px 24px 86px; background: #050505; }
-.planner-itinerary h2 { color: #161616; text-align: center; margin-bottom: 48px; }
+.planner-itinerary { max-width: 1160px; margin: 0 auto 40px; padding: 40px 24px; background: transparent; }
+.planner-itinerary h2 { color: #3d3935; text-align: center; margin-bottom: 48px; }
 .planner-itinerary__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-.planner-itinerary-card { position: relative; background: #fff; border-radius: 6px; padding: 30px 24px 24px; min-height: 176px; }
+.planner-itinerary-card { position: relative; background: #fff; border-radius: 8px; padding: 30px 24px 24px; min-height: 176px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
 .planner-itinerary-card > span { position: absolute; top: -13px; left: 22px; background: #d3065d; color: #fff; border-radius: 999px; padding: 6px 11px; font-size: 0.58rem; font-weight: 900; text-transform: uppercase; }
 .planner-itinerary-card h3 { color: #332d28; font-size: 1rem; font-weight: 800; margin-bottom: 18px; }
 .planner-itinerary-card p { display: grid; grid-template-columns: 72px 1fr; gap: 8px; color: #5e5751; font-size: 0.72rem; line-height: 1.45; margin-bottom: 12px; }
 .planner-itinerary-card strong { color: #2c2621; font-size: 0.7rem; }
-.planner-artisans { max-width: 1160px; margin: 0 auto; background: #f2f0eb; padding: 84px 24px 92px; }
-.planner-artisans h2 { margin-bottom: 42px; }
+.planner-artisans { max-width: 1160px; margin: 0 auto; background: transparent; padding: 40px 24px 92px; }
+.planner-artisans h2 { margin-bottom: 42px; text-align: left; }
 .planner-artisans__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
 .planner-artisan-card { overflow: hidden; }
 .planner-artisan-card img { width: 100%; height: 190px; object-fit: cover; }

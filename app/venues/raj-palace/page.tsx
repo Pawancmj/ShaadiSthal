@@ -1,7 +1,9 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Header from "../../components/Header";
+import { useCompare } from "../../hooks/useCompare";
 import { ReactElement, CSSProperties } from "react";
 import Footer from "../../components/Footer";
 
@@ -46,6 +48,15 @@ const calendarDays = [
 
 export default function VenueDetailPage(): ReactElement {
   const [selectedDay, setSelectedDay] = useState<number>(8);
+  const router = useRouter();
+  const { compareIds, toggleCompare } = useCompare();
+
+  const handleCompareClick = () => {
+    if (!compareIds.includes(6)) {
+      toggleCompare(6); // Rajwada Courtyard Palace has ID 6
+    }
+    router.push("/comparison");
+  };
 
   const labelStyle: CSSProperties = {
     display: "block", fontSize: "0.68rem",
@@ -313,9 +324,9 @@ export default function VenueDetailPage(): ReactElement {
                 <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
                 WISHLIST
               </button>
-              <button style={textActionBtn}>
+              <button style={{ ...textActionBtn, color: compareIds.includes(6) ? "#C8102E" : "#888" }} onClick={handleCompareClick}>
                 <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-                COMPARE
+                {compareIds.includes(6) ? "COMPARING" : "COMPARE"}
               </button>
             </div>
           </div>

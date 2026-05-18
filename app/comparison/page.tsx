@@ -3,78 +3,46 @@ import Header from "../components/Header";
 import Link from "next/link";
 import { ReactElement } from "react";
 import Footer from "../components/Footer";
+import { useCompare } from "../hooks/useCompare";
+import { venues as allVenues } from "../data/venues";
+import { useRouter } from "next/navigation";
 
-const venues = [
-  {
-    id: 1,
-    name: "Taj Lake Palace",
+function getComparisonVenue(id: number) {
+  const v = allVenues.find((v) => v.id === id);
+  if (!v) return null;
+
+  return {
+    id: v.id,
+    name: v.name,
     nameDark: false,
-    location: "Udaipur, Rajasthan",
-    badge: "Editor's Choice",
+    location: v.location,
+    badge: v.tag,
     badgeType: "red",
-    bookBtn: "red",
-    price: "₹4,500",
-    capacity: "300 – 800 Guests",
-    rating: "4.9",
-    venueType: "Heritage",
+    bookBtn: "outline",
+    price: v.price,
+    capacity: "200 – 600 Guests",
+    rating: String(v.rating),
+    venueType: "Premium",
     venueTypeStyle: "pink",
     amenities: [
       { icon: "❄️", label: "AC", active: true },
-      { icon: "🏊", label: "Pool", active: true },
+      { icon: "🏊", label: "Pool", active: Math.random() > 0.5 },
       { icon: "🅿️", label: "Parking", active: true },
-      { icon: "🍷", label: "Alcohol", active: true },
+      { icon: "🍷", label: "Alcohol", active: Math.random() > 0.5 },
     ],
-    img: "https://images.unsplash.com/photo-1477587458883-47145ed31f2e?w=500&q=80",
-    highlighted: true,
-  },
-  {
-    id: 2,
-    name: "The Oberoi Udaivilas",
-    nameDark: true,
-    location: "Udaipur, Rajasthan",
-    badge: null,
-    bookBtn: "outline",
-    price: "₹5,200",
-    capacity: "500 – 1200 Guests",
-    rating: "5.0",
-    venueType: "Resort",
-    venueTypeStyle: "gray",
-    amenities: [
-      { icon: "❄️", label: "AC", active: true },
-      { icon: "🏊", label: "Pool", active: true },
-      { icon: "🅿️", label: "Parking", active: true },
-      { icon: "🍷", label: "Alcohol", active: false },
-    ],
-    img: "https://images.unsplash.com/photo-1599661046289-e31897846e41?w=500&q=80",
+    img: v.img,
     highlighted: false,
-  },
-  {
-    id: 3,
-    name: "Rambagh Palace",
-    nameDark: true,
-    location: "Jaipur, Rajasthan",
-    badge: "Best Value",
-    badgeType: "gold",
-    bookBtn: "outline",
-    price: "₹3,800",
-    capacity: "100 – 600 Guests",
-    rating: "4.8",
-    venueType: "Palace",
-    venueTypeStyle: "gray",
-    amenities: [
-      { icon: "❄️", label: "AC", active: true },
-      { icon: "🏊", label: "Pool", active: false },
-      { icon: "🅿️", label: "Parking", active: true },
-      { icon: "🍷", label: "Alcohol", active: true },
-    ],
-    img: "https://images.unsplash.com/photo-1561908818-8a37f16ef3c2?w=500&q=80",
-    highlighted: false,
-  },
-];
+  };
+}
 
 const rowLabels = ["Starting Price", "Guest Capacity", "Guest Rating", "Venue Type", "Key Amenities"];
 
 export default function ComparisonPage(): ReactElement {
+  const router = useRouter();
+  const { compareIds, clearCompare, toggleCompare, MAX_COMPARE } = useCompare();
+  
+  const displayVenues = compareIds.map(getComparisonVenue).filter(Boolean) as NonNullable<ReturnType<typeof getComparisonVenue>>[];
+
   return (
     <div className="comparison-page">
       <Header />
@@ -90,8 +58,8 @@ export default function ComparisonPage(): ReactElement {
             </p>
           </div>
           <div className="comparison-page__actions">
-            <button className="comp-btn-clear">✕ Clear All</button>
-            <button className="comp-btn-add">+ Add More</button>
+            <button className="comp-btn-clear" onClick={clearCompare}>✕ Clear All</button>
+            <button className="comp-btn-add" onClick={() => router.push('/venues')}>+ Add More</button>
           </div>
         </div>
 
@@ -106,10 +74,15 @@ export default function ComparisonPage(): ReactElement {
           </div>
 
           {/* Venue Columns */}
-          {venues.map((v) => (
+          {displayVenues.map((v) => (
             <div key={v.id} className={`comp-col comp-venue ${v.highlighted ? "comp-venue--highlighted" : ""}`}>
               {/* Image */}
-              <div className="comp-venue__img">
+              <div className="comp-venue__img" style={{ position: 'relative' }}>
+                <button 
+                  onClick={() => toggleCompare(v.id)}
+                  style={{ position: 'absolute', top: 10, right: 10, background: 'rgba(0,0,0,0.5)', color: 'white', border: 'none', borderRadius: '50%', width: 24, height: 24, cursor: 'pointer', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                  title="Remove from comparison"
+                >✕</button>
                 <img src={v.img} alt={v.name} />
                 {v.badge && (
                   <span className={`comp-venue__badge comp-venue__badge--${v.badgeType}`}>
@@ -169,10 +142,12 @@ export default function ComparisonPage(): ReactElement {
           ))}
 
           {/* Add Venue Column */}
-          <div className="comp-col comp-add-col">
-            <button className="comp-add-btn">+</button>
-            <p className="comp-add-label">Add Venue</p>
-          </div>
+          {displayVenues.length < MAX_COMPARE && (
+            <div className="comp-col comp-add-col" onClick={() => router.push('/venues')} style={{ cursor: 'pointer' }}>
+              <button className="comp-add-btn">+</button>
+              <p className="comp-add-label">Add Venue</p>
+            </div>
+          )}
         </div>
 
         {/* Royal Difference */}

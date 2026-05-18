@@ -9,6 +9,7 @@ import Footer from "../components/Footer";
 import { cities } from "../data/cities";
 import { DEFAULT_CITY, cityAliases, venues } from "../data/venues";
 import type { Venue } from "../data/venues";
+import { useCompare } from "../hooks/useCompare";
 
 const capacities = ["100-300", "300-600", "600-1000", "1000+"];
 const cityFilterOptions = [DEFAULT_CITY, ...cities.map((city) => city.name)];
@@ -25,8 +26,10 @@ export default function VenuesClient(): ReactElement {
     [selectedCity],
   );
 
-  const selectedCompareVenue = filteredVenues[0] ?? venues[0];
-  const selectedCount = filteredVenues.length > 0 ? 1 : 0;
+  const { compareIds, toggleCompare, clearCompare, MAX_COMPARE } = useCompare();
+
+  const selectedCompareVenues = compareIds.map((id) => venues.find((v) => v.id === id)).filter(Boolean) as Venue[];
+  const selectedCount = selectedCompareVenues.length;
 
   const handleCityChange = (city: string) => {
     const href = city === DEFAULT_CITY ? "/venues" : `/venues?city=${encodeURIComponent(city)}`;
@@ -133,14 +136,14 @@ export default function VenuesClient(): ReactElement {
                   {filteredVenues
                     .filter((venue) => venue.layout === "tall")
                     .map((venue) => (
-                      <VenueCard key={venue.id} venue={venue} />
+                      <VenueCard key={venue.id} venue={venue} isCompared={compareIds.includes(venue.id)} onCompareToggle={() => toggleCompare(venue.id)} />
                     ))}
                 </div>
 
                 {filteredVenues
                   .filter((venue) => venue.layout === "wide")
                   .map((venue) => (
-                    <VenueCard key={venue.id} venue={venue} wide />
+                    <VenueCard key={venue.id} venue={venue} wide isCompared={compareIds.includes(venue.id)} onCompareToggle={() => toggleCompare(venue.id)} />
                   ))}
               </>
             )}
@@ -148,7 +151,7 @@ export default function VenuesClient(): ReactElement {
         </div>
       </div>
 
-      <CompareBar venue={selectedCompareVenue} selectedCount={selectedCount} />
+      <CompareBar selectedVenues={selectedCompareVenues} selectedCount={selectedCount} onClear={clearCompare} max={MAX_COMPARE} />
       <Footer />
     </div>
   );
@@ -175,7 +178,7 @@ function FilterGroup({ title, children }: { title: string; children: ReactNode }
   );
 }
 
-function VenueCard({ venue, wide = false }: { venue: Venue; wide?: boolean }): ReactElement {
+function VenueCard({ venue, wide = false, isCompared = false, onCompareToggle }: { venue: Venue; wide?: boolean; isCompared?: boolean; onCompareToggle?: () => void }): ReactElement {
   return (
     <article className={`venue-card ${wide ? "venue-card--wide" : ""}`}>
       <div className="venue-card__img">
@@ -195,8 +198,8 @@ function VenueCard({ venue, wide = false }: { venue: Venue; wide?: boolean }): R
                 <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
               </svg>
             </button>
-            <button className="venue-card__icon-btn venue-card__icon-btn--pink" type="button" aria-label={`Compare ${venue.name}`}>
-              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#fff" strokeWidth={2}>
+            <button className={`venue-card__icon-btn ${isCompared ? 'venue-card__icon-btn--pink' : ''}`} type="button" aria-label={`Compare ${venue.name}`} onClick={onCompareToggle}>
+              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke={isCompared ? "#fff" : "#555"} strokeWidth={2}>
                 <path strokeLinecap="round" d="M8 7h12M8 12h12M8 17h12M4 7h.01M4 12h.01M4 17h.01" />
               </svg>
             </button>
@@ -240,22 +243,28 @@ function VenueCard({ venue, wide = false }: { venue: Venue; wide?: boolean }): R
   );
 }
 
-function CompareBar({ venue, selectedCount }: { venue: Venue; selectedCount: number }): ReactElement {
+function CompareBar({ selectedVenues, selectedCount, onClear, max }: { selectedVenues: Venue[]; selectedCount: number; onClear: () => void; max: number }): ReactElement | null {
+  if (selectedCount === 0) return null;
+
   return (
     <div className="compare-bar">
       <div className="compare-bar__thumbs">
-        <div className="compare-bar__thumb">
-          <img src={venue.img} alt="" />
-        </div>
-        <div className="compare-bar__add">+</div>
+        {selectedVenues.map(v => (
+          <div key={v.id} className="compare-bar__thumb">
+            <img src={v.img} alt="" />
+          </div>
+        ))}
+        {selectedCount < max && (
+          <Link href="/comparison" className="compare-bar__add">+</Link>
+        )}
       </div>
       <div>
         <p className="compare-bar__label">Compare Venues</p>
-        <p className="compare-bar__sub">{selectedCount} item selected (max 3)</p>
+        <p className="compare-bar__sub">{selectedCount} item selected (max {max})</p>
       </div>
       <div className="compare-bar__actions">
-        <button className="compare-bar__clear" type="button">Clear All</button>
-        <button className="btn-gold" type="button">Compare Now</button>
+        <button className="compare-bar__clear" type="button" onClick={onClear}>Clear All</button>
+        <Link href="/comparison" className="btn-gold">Compare Now</Link>
       </div>
     </div>
   );
