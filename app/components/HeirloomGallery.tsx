@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const images = [
   { src: "https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=80", alt: "Jewelry", tall: false },
   { src: "https://images.unsplash.com/photo-1606800052052-a08af7148866?w=500&q=80", alt: "Couple", tall: true },
@@ -13,13 +15,21 @@ export default function HeirloomGallery(): React.ReactElement {
       padding: "52px 32px",
       fontFamily: "'DM Sans', sans-serif",
     }}>
-      <h2 style={{
-        fontFamily: "'Playfair Display', serif",
-        fontSize: "1.6rem", fontWeight: 700,
-        textAlign: "center", marginBottom: 28,
-      }}>
-        The Heirloom Gallery
-      </h2>
+      {/* Header */}
+      <div className="home-section__header" style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: 24 }}>
+        <div>
+          <div style={{ width: 36, height: 3, background: "#C8102E", borderRadius: 2, marginBottom: 8 }} />
+          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.5rem", fontWeight: 700, color: "#111" }}>
+            The Heirloom Gallery
+          </h2>
+          <p style={{ fontSize: "0.72rem", color: "#aaa", marginTop: 4 }}>
+            Beautiful memories and inspirations captured in frame
+          </p>
+        </div>
+        <Link href="/gallery" style={{ fontSize: "0.78rem", fontWeight: 600, color: "#C8102E", textDecoration: "none" }}>
+          View All ›
+        </Link>
+      </div>
 
       <div className="heirloom-grid" style={{
         display: "grid",

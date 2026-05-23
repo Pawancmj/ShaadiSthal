@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function BudgetCalculator(): React.ReactElement {
   return (
     <section className="budget-section" style={{
@@ -20,15 +22,15 @@ export default function BudgetCalculator(): React.ReactElement {
       }}>
         Set a budget, get recommendations on vendors, catering, decor based on your estimated guest count, city, and preferences made.
       </p>
-      <button style={{
+      <Link href="/planner" style={{ display: "inline-block",
         background: "#D4A017", color: "#1a1a1a",
         padding: "12px 32px", borderRadius: 8,
         fontSize: "0.82rem", fontWeight: 700,
-        border: "none", cursor: "pointer",
+        textDecoration: "none",
         fontFamily: "'DM Sans', sans-serif",
       }}>
         Calculate Your Budget
-      </button>
+      </Link>
     </section>
   );
 }

@@ -191,6 +191,14 @@ function VenueCard({ venue, wide = false, isCompared = false, onCompareToggle }:
             {venue.tag}
           </span>
         )}
+        {venue.verified && (
+          <span className="venue-card__verified">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={3}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            Verified
+          </span>
+        )}
         {!wide && (
           <div className="venue-card__actions">
             <button className="venue-card__icon-btn" type="button" aria-label={`Save ${venue.name}`}>

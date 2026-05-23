@@ -11,6 +11,7 @@ export type Venue = {
   description?: string;
   img: string;
   layout: "tall" | "wide";
+  verified?: boolean;
 };
 
 export const DEFAULT_CITY = "Delhi NCR";
@@ -32,6 +33,7 @@ export const venues: Venue[] = [
     tagBg: "#fff8e1",
     img: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=900&q=80",
     layout: "tall",
+    verified: true,
   },
   {
     id: 2,
@@ -54,10 +56,23 @@ export const venues: Venue[] = [
     tag: "NEW OPENING",
     tagColor: "#C8102E",
     tagBg: "#fff0f0",
-    description:
-      "Experience unparalleled luxury at the Imperial Palms with a pillarless hall and catering curated for grand wedding weekends.",
     img: "https://images.unsplash.com/photo-1561908818-8a37f16ef3c2?w=900&q=80",
-    layout: "wide",
+    layout: "tall",
+    verified: true,
+  },
+  {
+    id: 12,
+    city: "Delhi",
+    name: "The Grand Pavilion Delhi",
+    location: "Aerocity, New Delhi",
+    price: "Rs. 2,80,000",
+    rating: 4.7,
+    tag: "LUXURY",
+    tagColor: "#7c3aed",
+    tagBg: "#f5f3ff",
+    img: "https://images.unsplash.com/photo-1549294413-26f195200c16?w=900&q=80",
+    layout: "tall",
+    verified: true,
   },
   {
     id: 4,

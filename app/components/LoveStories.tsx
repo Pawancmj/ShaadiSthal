@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const stories = [
   { title: "The Udaipur Affair", date: "October 2024", img: "https://images.unsplash.com/photo-1477587458883-47145ed31f2e?w=700&q=80" },
   { title: "A Royal Delhi Soiree", date: "December 2024", img: "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=700&q=80" },
@@ -21,9 +23,9 @@ export default function LoveStories(): React.ReactElement {
             63 incredible weddings planned through Shaadified
           </p>
         </div>
-        <a href="#" style={{ fontSize: "0.78rem", fontWeight: 600, color: "#C8102E", textDecoration: "none" }}>
+        <Link href="/real-wedding" style={{ fontSize: "0.78rem", fontWeight: 600, color: "#C8102E", textDecoration: "none" }}>
           View All ›
-        </a>
+        </Link>
       </div>
 
       {/* Cards */}

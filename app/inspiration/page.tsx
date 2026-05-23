@@ -67,37 +67,7 @@ export default function InspirationPage(): ReactElement {
     <div className="blog-page">
       <Header />
 
-      {/* ── HERO SPLIT ── */}
-      <div className="blog-hero">
-        {/* Left - Featured article */}
-        <div className="blog-hero__left">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80" alt="Royal Journal" />
-          <div className="blog-hero__overlay" />
-          <div className="blog-hero__text">
-            <span className="blog-hero__tag">Masterclass</span>
-            <h1 className="blog-hero__title">The Royal Journal</h1>
-            <p className="blog-hero__subtitle">"Curating the timeless aesthetics of heritage weddings for the modern visionary."</p>
-            <Link href="/inspiration/temple-jewelry-guide" className="blog-hero__cta">
-              Explore Featured Masterclass →
-            </Link>
-          </div>
-        </div>
-
-        {/* Right - Editorial note */}
-        <div className="blog-hero__right">
-          <h2 className="blog-hero__editorial-title">Editorial Note</h2>
-          <p className="blog-hero__editorial-text">
-            In this edition, we delve into the intricate weave of Banarasi silks and the modern evolution of the 'Muhurtham' ceremony.
-          </p>
-          <div className="blog-hero__editor">
-            <img src="https://i.pravatar.cc/40?img=47" alt="Editor" className="blog-hero__editor-avatar" />
-            <div>
-              <p className="blog-hero__editor-name">Amara Singh</p>
-              <p className="blog-hero__editor-role">Editor-in-Chief</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      
 
       {/* ── FILTER TABS ── */}
       <div className="blog-filters">

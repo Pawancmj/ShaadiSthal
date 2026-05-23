@@ -48,6 +48,7 @@ const calendarDays = [
 
 export default function VenueDetailPage(): ReactElement {
   const [selectedDay, setSelectedDay] = useState<number>(8);
+  const [activeTab, setActiveTab] = useState<'portfolio' | 'albums' | 'videos'>('portfolio');
   const router = useRouter();
   const { compareIds, toggleCompare } = useCompare();
 
@@ -119,22 +120,24 @@ export default function VenueDetailPage(): ReactElement {
 
       {/* Stats Strip */}
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px" }}>
-        <div style={{ display: "flex", gap: 12, marginTop: -28, position: "relative", zIndex: 10 }}>
+        <div style={{ display: "flex", gap: 10, marginTop: -28, position: "relative", zIndex: 10 }}>
           {[
             { icon: "🎭", label: "Starting Price", value: "₹2,50,000", sub: "per plate (approx.)" },
             { icon: "👥", label: "Capacity", value: "500 – 2000", sub: "Guests across lawns" },
             { icon: "🏰", label: "Venue Type", value: "Heritage", sub: "Grand Architecture" },
+            { icon: "📍", label: "Address", value: "Amer Road", sub: "Jaipur, Rajasthan" },
           ].map(({ icon, label, value, sub }) => (
             <div key={label} style={{
               flex: 1, background: "#fff",
-              borderRadius: 10, padding: "14px 16px",
+              borderRadius: 10, padding: "12px 13px",
               boxShadow: "0 4px 20px rgba(0,0,0,0.10)",
               border: "1px solid #f0f0f0",
+              minWidth: 0,
             }}>
-              <span style={{ fontSize: "1.1rem" }}>{icon}</span>
-              <p style={{ fontSize: "0.65rem", color: "#aaa", textTransform: "uppercase", letterSpacing: "0.06em", marginTop: 6, marginBottom: 3 }}>{label}</p>
-              <p style={{ fontSize: "0.92rem", fontWeight: 700, color: "#111" }}>{value}</p>
-              <p style={{ fontSize: "0.65rem", color: "#aaa" }}>{sub}</p>
+              <span style={{ fontSize: "1rem" }}>{icon}</span>
+              <p style={{ fontSize: "0.62rem", color: "#aaa", textTransform: "uppercase", letterSpacing: "0.06em", marginTop: 6, marginBottom: 3 }}>{label}</p>
+              <p style={{ fontSize: "0.88rem", fontWeight: 700, color: "#111", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{value}</p>
+              <p style={{ fontSize: "0.62rem", color: "#aaa", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{sub}</p>
             </div>
           ))}
         </div>
@@ -208,6 +211,127 @@ export default function VenueDetailPage(): ReactElement {
                 </div>
               ))}
             </div>
+          </div>
+
+          <hr style={{ border: "none", borderTop: "1px solid #f0f0f0", marginBottom: 24 }} />
+
+          {/* Portfolio / Albums / Videos */}
+          <div style={{ marginBottom: 32 }}>
+            {/* Tab Bar */}
+            <div style={{ display: "flex", gap: 0, borderBottom: "2px solid #f0f0f0", marginBottom: 20 }}>
+              {([
+                { key: 'portfolio', label: 'Portfolio', count: 54 },
+                { key: 'albums',    label: 'Albums',    count: 3  },
+                { key: 'videos',    label: 'Videos',    count: 6  },
+              ] as const).map(({ key, label, count }) => (
+                <button
+                  key={key}
+                  type="button"
+                  onClick={() => setActiveTab(key)}
+                  style={{
+                    background: 'none', border: 'none', cursor: 'pointer',
+                    padding: '10px 20px 10px 0',
+                    fontSize: '0.82rem', fontWeight: 700,
+                    fontFamily: "'DM Sans', sans-serif",
+                    color: activeTab === key ? '#C8102E' : '#888',
+                    borderBottom: activeTab === key ? '2px solid #C8102E' : '2px solid transparent',
+                    marginBottom: -2, letterSpacing: '0.03em',
+                    transition: 'color 0.2s',
+                  }}
+                >
+                  {label.toUpperCase()} ({count})
+                </button>
+              ))}
+            </div>
+
+            {/* Portfolio Tab */}
+            {activeTab === 'portfolio' && (
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8 }}>
+                {[
+                  'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=400&q=80',
+                  'https://images.unsplash.com/photo-1599661046289-e31897846e41?w=400&q=80',
+                  'https://images.unsplash.com/photo-1561908818-8a37f16ef3c2?w=400&q=80',
+                  'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=400&q=80',
+                  'https://images.unsplash.com/photo-1477587458883-47145ed31f2e?w=400&q=80',
+                  'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=400&q=80',
+                  'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=400&q=80',
+                  'https://images.unsplash.com/photo-1464207687429-7505649dae38?w=400&q=80',
+                  'https://images.unsplash.com/photo-1549294413-26f195200c16?w=400&q=80',
+                  'https://images.unsplash.com/photo-1567157577867-05ccb1388e66?w=400&q=80',
+                  'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400&q=80',
+                  'https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=400&q=80',
+                ].map((src, i) => (
+                  <div key={i} style={{ borderRadius: 8, overflow: 'hidden', aspectRatio: '4/3', cursor: 'pointer', position: 'relative' }}>
+                    <img src={src} alt={`Portfolio ${i + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.3s' }}
+                      onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.06)')}
+                      onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Albums Tab */}
+            {activeTab === 'albums' && (
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
+                {[
+                  { title: 'Royal Ceremony', count: 24, cover: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=500&q=80' },
+                  { title: 'Palace Décor',   count: 18, cover: 'https://images.unsplash.com/photo-1561908818-8a37f16ef3c2?w=500&q=80' },
+                  { title: 'Garden Lawns',   count: 12, cover: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?w=500&q=80' },
+                ].map(({ title, count, cover }) => (
+                  <div key={title} style={{ borderRadius: 10, overflow: 'hidden', cursor: 'pointer', boxShadow: '0 2px 12px rgba(0,0,0,0.09)', position: 'relative' }}>
+                    <img src={cover} alt={title} style={{ width: '100%', height: 170, objectFit: 'cover', display: 'block' }} />
+                    <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%)', padding: '24px 14px 14px' }}>
+                      <p style={{ color: '#fff', fontWeight: 700, fontSize: '0.9rem', marginBottom: 2 }}>{title}</p>
+                      <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.7rem' }}>{count} photos</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Videos Tab */}
+            {activeTab === 'videos' && (
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
+                {[
+                  { title: 'Grand Baraat Entry',  dur: '3:24', thumb: 'https://images.unsplash.com/photo-1477587458883-47145ed31f2e?w=500&q=80' },
+                  { title: 'Phera Ceremony',      dur: '5:12', thumb: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=500&q=80' },
+                  { title: 'Palace Décor Tour',   dur: '2:48', thumb: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=500&q=80' },
+                  { title: 'Reception Highlight', dur: '4:05', thumb: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=500&q=80' },
+                  { title: 'Sangeet Night',       dur: '6:30', thumb: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=500&q=80' },
+                  { title: 'Aerial View Tour',    dur: '1:58', thumb: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?w=500&q=80' },
+                ].map(({ title, dur, thumb }) => (
+                  <div key={title} style={{ borderRadius: 10, overflow: 'hidden', cursor: 'pointer', boxShadow: '0 2px 12px rgba(0,0,0,0.09)', position: 'relative' }}>
+                    <img src={thumb} alt={title} style={{ width: '100%', height: 140, objectFit: 'cover', display: 'block' }} />
+                    {/* Play Button Overlay */}
+                    <div style={{
+                      position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      background: 'rgba(0,0,0,0.25)',
+                    }}>
+                      <div style={{
+                        width: 40, height: 40, borderRadius: '50%',
+                        background: 'rgba(255,255,255,0.92)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        boxShadow: '0 2px 12px rgba(0,0,0,0.3)',
+                      }}>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#C8102E"><path d="M8 5v14l11-7z"/></svg>
+                      </div>
+                    </div>
+                    {/* Duration badge */}
+                    <div style={{
+                      position: 'absolute', bottom: 44, right: 8,
+                      background: 'rgba(0,0,0,0.65)', color: '#fff',
+                      fontSize: '0.62rem', fontWeight: 600,
+                      padding: '2px 6px', borderRadius: 4,
+                    }}>{dur}</div>
+                    <div style={{ padding: '10px 12px', background: '#fff' }}>
+                      <p style={{ fontSize: '0.78rem', fontWeight: 600, color: '#111' }}>{title}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           <hr style={{ border: "none", borderTop: "1px solid #f0f0f0", marginBottom: 24 }} />
