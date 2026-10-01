@@ -1,7 +1,7 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
-import ApiClient from '@/lib/api';
+import ApiClient from '@/api/client';
 
 export default function LoginForm() {
   const [loading, setLoading] = useState(false);
