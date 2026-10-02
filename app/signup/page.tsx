@@ -6,6 +6,7 @@ import { User, Mail, Lock, Phone, ArrowRight, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Footer from "../components/Footer";
+import { registerUser } from "@/api/auth.api";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -28,32 +29,19 @@ export default function SignupPage() {
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
+
     setLoading(true);
     setError("");
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/v1";
-      const res = await fetch(`${apiUrl}/auth/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(formData),
-      });
+      const res = await registerUser(formData);
 
-      const contentType = res.headers.get("content-type");
-      if (contentType && contentType.includes("application/json")) {
-        const data = await res.json();
-        if (res.ok) {
-          router.push(`/verify-otp?email=${encodeURIComponent(formData.email)}`);
-        } else {
-          setError(data.message || "Registration failed.");
-        }
+      if (res.success) {
+        router.push(
+          `/verify-otp?email=${encodeURIComponent(formData.email)}`
+        );
       } else {
-        const text = await res.text();
-        console.error("Non-JSON response:", text);
-        setError("Server returned an invalid response. Please check backend logs.");
+        setError(res.message || "Registration failed.");
       }
     } catch (err) {
       console.error(err);
@@ -78,7 +66,7 @@ export default function SignupPage() {
       >
         <div className="bg-white/80 backdrop-blur-xl p-8 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white/20">
           <div className="text-center mb-8">
-            <motion.h1 
+            <motion.h1
               className="text-4xl font-bold bg-gradient-to-r from-[#C8102E] to-[#E91E8C] bg-clip-text text-transparent mb-2"
               style={{ fontFamily: "var(--font-heading)" }}
             >
@@ -89,7 +77,7 @@ export default function SignupPage() {
 
           <form onSubmit={handleSignup} className="space-y-4">
             {error && (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 className="p-3 rounded-xl bg-red-50 border border-red-100 text-red-600 text-sm font-medium"
@@ -170,8 +158,8 @@ export default function SignupPage() {
           <div className="mt-8 text-center">
             <p className="text-gray-500">
               Already have an account?{" "}
-              <Link 
-                href="/signin" 
+              <Link
+                href="/signin"
                 className="font-bold text-[#C8102E] hover:text-[#E91E8C] transition-colors"
               >
                 Log In
@@ -181,7 +169,7 @@ export default function SignupPage() {
         </div>
       </motion.div>
     </div>
-    <Footer />
+
     </>
   );
 }

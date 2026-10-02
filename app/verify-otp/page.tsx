@@ -5,12 +5,13 @@ import { motion } from "framer-motion";
 import { ShieldCheck, ArrowRight, Loader2, RefreshCw } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Footer from "../components/Footer";
+import { verifyOtp } from "@/api/auth.api";
 
 function OTPContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const email = searchParams.get("email") || "";
-  
+
   const [loading, setLoading] = useState(false);
   const [otp, setOtp] = useState("");
   const [error, setError] = useState("");
@@ -22,30 +23,28 @@ function OTPContent() {
     }
   }, [email, router]);
 
+
+
   const handleVerify = async (e: React.FormEvent) => {
     e.preventDefault();
+
     setLoading(true);
     setError("");
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/v1";
-      const res = await fetch(`${apiUrl}/auth/verify-otp`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, otp }),
+      const res = await verifyOtp({
+        email,
+        otp,
       });
 
-      const data = await res.json();
-
-      if (res.ok) {
+      if (res.success) {
         setSuccess("Email verified successfully! Redirecting to login...");
+
         setTimeout(() => {
           router.push("/signin");
         }, 2000);
       } else {
-        setError(data.message || "Invalid OTP. Please try again.");
+        setError(res.message || "Invalid OTP. Please try again.");
       }
     } catch (err) {
       console.error(err);
@@ -54,6 +53,8 @@ function OTPContent() {
       setLoading(false);
     }
   };
+
+
 
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#fafafa]">
@@ -72,7 +73,7 @@ function OTPContent() {
             <div className="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
               <ShieldCheck className="w-8 h-8 text-[#C8102E]" />
             </div>
-            <motion.h1 
+            <motion.h1
               className="text-3xl font-bold text-gray-900 mb-2"
               style={{ fontFamily: "var(--font-heading)" }}
             >
@@ -86,7 +87,7 @@ function OTPContent() {
 
           <form onSubmit={handleVerify} className="space-y-6">
             {error && (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 className="p-3 rounded-xl bg-red-50 border border-red-100 text-red-600 text-sm font-medium"
@@ -96,7 +97,7 @@ function OTPContent() {
             )}
 
             {success && (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 className="p-3 rounded-xl bg-green-50 border border-green-100 text-green-600 text-sm font-medium"
@@ -145,10 +146,10 @@ function OTPContent() {
 export default function VerifyOtpPage() {
   return (
     <>
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-[#fafafa]"><Loader2 className="w-10 h-10 animate-spin text-[#C8102E]" /></div>}>
-      <OTPContent />
-    </Suspense>
-    <Footer />
+      <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-[#fafafa]"><Loader2 className="w-10 h-10 animate-spin text-[#C8102E]" /></div>}>
+        <OTPContent />
+      </Suspense>
+      <Footer />
     </>
   );
 }
