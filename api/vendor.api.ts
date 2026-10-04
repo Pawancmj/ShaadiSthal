@@ -1,5 +1,9 @@
 import ApiClient from "./client";
 
+export const getVendors = () => {
+  return ApiClient.get("/vendors");
+};
+
 export const getVendorProfile = () => {
   return ApiClient.get("/vendor/profile");
 };
@@ -22,3 +26,5 @@ export const getVendorBookings = () => {
 export const getVendorDashboard = () => {
   return ApiClient.get("/vendor/dashboard");
 };
+
+

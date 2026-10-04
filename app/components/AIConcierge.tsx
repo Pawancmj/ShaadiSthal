@@ -1,246 +1,234 @@
+
+"use client";
+
+import React, { useEffect, useState } from "react";
+import {
+  CheckSquare,
+  Sparkles,
+  WalletCards,
+} from "lucide-react";
+
 const timelineCards = [
   {
     title: "Next Task",
     text: "Confirm Floral Theme for Reception",
-    icon: (
-      <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M4 7h2M10 7h10M4 12h10M18 12h2M4 17h2M10 17h10" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M8 5v4M16 10v4M8 15v4" />
-      </svg>
-    ),
+    icon: CheckSquare,
   },
   {
     title: "Budget Status",
-    text: "65% of Rs.50L Allocated",
-    icon: (
-      <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.2}>
-        <rect x="3" y="6" width="18" height="12" rx="2" />
-        <circle cx="12" cy="12" r="2.4" />
-        <path strokeLinecap="round" d="M7 9h1M16 15h1" />
-      </svg>
-    ),
+    text: "65% of ₹50L Allocated",
+    icon: WalletCards,
   },
 ];
 
+const weddingDate = new Date("2026-11-24T00:00:00");
+
+function getCountdown() {
+  const now = new Date().getTime();
+  const target = weddingDate.getTime();
+
+  const difference = Math.max(target - now, 0);
+
+  return {
+    days: Math.floor(
+      difference / (1000 * 60 * 60 * 24),
+    ),
+    hours: Math.floor(
+      (difference / (1000 * 60 * 60)) % 24,
+    ),
+    minutes: Math.floor(
+      (difference / (1000 * 60)) % 60,
+    ),
+    seconds: Math.floor(
+      (difference / 1000) % 60,
+    ),
+  };
+}
+
 export default function AIConcierge(): React.ReactElement {
+  const [countdown, setCountdown] = useState(getCountdown());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCountdown(getCountdown());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const countdownItems = [
+    {
+      number: countdown.days,
+      label: "Days",
+    },
+    {
+      number: countdown.hours,
+      label: "Hours",
+    },
+    {
+      number: countdown.minutes,
+      label: "Mins",
+    },
+    {
+      number: countdown.seconds,
+      label: "Secs",
+    },
+  ];
+
   return (
-    <section
-      className="ai-section"
-      style={{
-        maxWidth: 1160,
-        margin: "0 auto",
-        padding: "52px 32px 52px",
-        fontFamily: "'DM Sans', sans-serif",
-      }}
-    >
-      <div
-        className="ai-card"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "minmax(0, 1fr) 260px",
-          gap: 28,
-          alignItems: "stretch",
-        }}
-      >
-        <div
-          className="ai-card__copy"
-          style={{
-            position: "relative",
-            minHeight: 248,
-            overflow: "hidden",
-            borderRadius: 16,
-            background: "linear-gradient(135deg, #c70458 0%, #e00b65 50%, #d3054d 100%)",
-            padding: "42px 44px 34px",
-            boxShadow: "0 18px 42px rgba(199, 4, 88, 0.18)",
-          }}
-        >
+    <section className="mx-auto max-w-[1160px] px-6 py-14 md:px-8">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-5">
+        {/* Main Concierge Panel */}
+        <div className="relative min-h-[360px] overflow-hidden bg-[#111111] px-6 py-8 sm:px-8 sm:py-9 md:min-h-[340px] md:px-10 lg:min-h-[320px] lg:px-11">
+          {/* Decorative background */}
           <div
             aria-hidden="true"
-            style={{
-              position: "absolute",
-              right: -22,
-              bottom: -4,
-              width: 150,
-              height: 150,
-              color: "rgba(255,255,255,0.12)",
-            }}
-          >
-            <svg width="150" height="150" viewBox="0 0 120 120" fill="none">
-              <path
-                d="M60 4L74.5 45.5L116 60L74.5 74.5L60 116L45.5 74.5L4 60L45.5 45.5L60 4Z"
-                stroke="currentColor"
-                strokeWidth="9"
-              />
-              <path
-                d="M99 10L104 25L119 30L104 35L99 50L94 35L79 30L94 25L99 10Z"
-                fill="currentColor"
-              />
-            </svg>
-          </div>
-
-          <h2
-            style={{
-              position: "relative",
-              fontFamily: "'Playfair Display', serif",
-              fontSize: "2rem",
-              lineHeight: 1.15,
-              fontWeight: 700,
-              color: "#fff",
-              marginBottom: 14,
-            }}
-          >
-            Your AI Wedding Concierge.
-          </h2>
-          <p
-            style={{
-              position: "relative",
-              fontSize: "0.82rem",
-              color: "rgba(255,255,255,0.82)",
-              lineHeight: 1.65,
-              maxWidth: 500,
-              marginBottom: 30,
-            }}
-          >
-            Let our intelligent assistant handle the timelines, vendor
-            follow-ups, and guest lists while you focus on the magic.
-          </p>
+            className="pointer-events-none absolute -bottom-16 -right-12 h-52 w-52 rounded-full border border-[#C8102E]/15"
+          />
 
           <div
-            className="ai-card__task-grid"
-            style={{
-              position: "relative",
-              display: "grid",
-              gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-              gap: 16,
-              maxWidth: 620,
-            }}
+            aria-hidden="true"
+            className="pointer-events-none absolute -bottom-8 -right-4 h-36 w-36 rounded-full border border-[#C8102E]/10"
+          />
+
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute right-8 top-8 text-[#C8102E]/20"
           >
-            {timelineCards.map((card) => (
-              <div
-                key={card.title}
-                style={{
-                  minHeight: 72,
-                  borderRadius: 6,
-                  border: "1px solid rgba(255,255,255,0.16)",
-                  background: "rgba(255,255,255,0.12)",
-                  padding: "13px 15px",
-                  color: "#fff",
-                  backdropFilter: "blur(8px)",
-                }}
-              >
-                <div style={{ marginBottom: 6, opacity: 0.95 }}>{card.icon}</div>
-                <p style={{ fontSize: "0.74rem", fontWeight: 800, marginBottom: 2 }}>{card.title}</p>
-                <p style={{ fontSize: "0.66rem", color: "rgba(255,255,255,0.72)" }}>{card.text}</p>
-              </div>
-            ))}
+            <Sparkles className="h-16 w-16" strokeWidth={0.8} />
+          </div>
+
+          <div className="relative z-10">
+            {/* Eyebrow */}
+            <div className="mb-5 flex items-center gap-2">
+              <span className="h-px w-7 bg-[#C8102E]" />
+
+              <p className="text-[7px] font-semibold uppercase tracking-[0.24em] text-[#C8102E]">
+                Intelligent wedding planning
+              </p>
+            </div>
+
+            {/* Heading */}
+            <h2 className="max-w-[560px] font-serif text-[2rem] font-medium leading-[1.08] tracking-[-0.035em] text-white sm:text-[2.35rem] md:text-[2.55rem]">
+              Your AI Wedding
+              <br />
+              <span className="text-white/65">Concierge.</span>
+            </h2>
+
+            {/* Description */}
+            <p className="mt-4 max-w-[520px] text-[10px] leading-5 text-zinc-400 sm:text-[11px] md:text-[12px] md:leading-6">
+              Let our intelligent assistant handle timelines, vendor
+              follow-ups and guest lists while you focus on the magic.
+            </p>
+
+            {/* Task Cards */}
+            <div className="mt-7 grid grid-cols-1 gap-2.5 sm:grid-cols-2 sm:gap-3">
+              {timelineCards.map((card) => {
+                const Icon = card.icon;
+
+                return (
+                  <div
+                    key={card.title}
+                    className="group border border-white/10 bg-white/[0.055] px-4 py-3.5 backdrop-blur-sm transition-all duration-300 hover:border-[#C8102E]/30 hover:bg-white/[0.08]"
+                  >
+                    <div className="mb-2 flex h-6 w-6 items-center justify-center border border-white/10 text-[#C8102E]">
+                      <Icon
+                        className="h-3.5 w-3.5"
+                        strokeWidth={1.8}
+                      />
+                    </div>
+
+                    <p className="text-[9px] font-semibold text-white">
+                      {card.title}
+                    </p>
+
+                    <p className="mt-1 text-[8px] leading-4 text-zinc-500">
+                      {card.text}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
 
-        <div
-          className="ai-card__countdown"
-          style={{
-            minHeight: 248,
-            borderRadius: 16,
-            background: "#fff",
-            boxShadow: "0 16px 34px rgba(38, 31, 24, 0.16)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "36px 26px",
-            textAlign: "center",
-          }}
-        >
-          <div>
-            <p
-              style={{
-                fontSize: "0.58rem",
-                fontWeight: 800,
-                letterSpacing: "0.13em",
-                color: "#c59b38",
-                textTransform: "uppercase",
-                marginBottom: 18,
-              }}
-            >
-              The Big Day
-            </p>
-            <div
-              className="ai-card__time-row"
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr auto 1fr auto 1fr",
-                alignItems: "start",
-                columnGap: 10,
-                marginBottom: 18,
-              }}
-            >
-              {[
-                { n: "124", u: "Days" },
-                { n: "18", u: "Hours" },
-                { n: "45", u: "Mins" },
-              ].map((time, index) => (
-                <span key={time.u} style={{ display: "contents" }}>
-                  <span>
-                    <span
-                      className="ai-card__time-number"
-                      style={{
-                        display: "block",
-                        fontFamily: "'Playfair Display', serif",
-                        fontSize: "1.85rem",
-                        lineHeight: 1,
-                        fontWeight: 600,
-                        color: "#151515",
-                      }}
+        {/* Countdown Panel */}
+        <div className="relative flex min-h-[300px] items-center justify-center overflow-hidden border border-zinc-200 bg-[#f3f0ea] px-5 py-8 sm:min-h-[270px] sm:px-7 lg:min-h-[320px]">
+          {/* Decorative circle */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full border border-[#C8102E]/10"
+          />
+
+          <div className="relative z-10 w-full max-w-[310px] text-center">
+            <div className="mb-5 flex items-center justify-center gap-2">
+              <span className="h-px w-6 bg-[#C8102E]/40" />
+
+              <p className="text-[7px] font-semibold uppercase tracking-[0.22em] text-[#C8102E]">
+                The Big Day
+              </p>
+
+              <span className="h-px w-6 bg-[#C8102E]/40" />
+            </div>
+
+            {/* Countdown */}
+            <div className="grid grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] items-start">
+              {countdownItems.map((time, index) => (
+                <React.Fragment key={time.label}>
+                  <div className="min-w-0">
+                    <p
+                      key={`${time.label}-${time.number}`}
+                      className="font-serif text-[1.65rem] font-medium leading-none tracking-[-0.05em] text-zinc-900 transition-all duration-500 sm:text-[2rem] md:text-[2.15rem]"
                     >
-                      {time.n}
+                      {String(time.number).padStart(2, "0")}
+                    </p>
+
+                    <p className="mt-2 text-[6px] font-semibold uppercase tracking-[0.16em] text-zinc-400 sm:text-[7px]">
+                      {time.label}
+                    </p>
+                  </div>
+
+                  {index < 3 && (
+                    <span className="px-1 pt-0.5 font-serif text-base text-zinc-300 sm:text-lg">
+                      :
                     </span>
-                    <span
-                      style={{
-                        display: "block",
-                        fontSize: "0.54rem",
-                        color: "#86817a",
-                        marginTop: 5,
-                        textTransform: "uppercase",
-                      }}
-                    >
-                      {time.u}
-                    </span>
-                  </span>
-                  {index < 2 && (
-                    <span style={{ fontSize: "1.35rem", lineHeight: 1, color: "#25211d", paddingTop: 2 }}>:</span>
                   )}
-                </span>
+                </React.Fragment>
               ))}
             </div>
-            <p
-              style={{
-                fontFamily: "'Playfair Display', serif",
-                fontSize: "1.04rem",
-                color: "#171717",
-                fontWeight: 600,
-                marginBottom: 6,
-              }}
-            >
-              Simran &amp; Arjun
-            </p>
-            <p style={{ fontSize: "0.62rem", color: "#8d877f", marginBottom: 20 }}>
-              November 24th, 2024
-            </p>
+
+            {/* Couple */}
+            <div className="mt-7">
+              <p className="font-serif text-[1.05rem] font-medium tracking-[-0.02em] text-zinc-900">
+                Simran &amp; Arjun
+              </p>
+
+              <p className="mt-1 text-[7px] uppercase tracking-[0.15em] text-zinc-400">
+                November 24th, 2026
+              </p>
+            </div>
+
             <button
-              style={{
-                color: "#d30558",
-                background: "none",
-                border: "none",
-                fontSize: "0.72rem",
-                fontWeight: 800,
-                cursor: "pointer",
-                fontFamily: "'DM Sans', sans-serif",
-              }}
+              type="button"
+              className="mt-5 border-b border-[#C8102E]/30 pb-1 text-[7px] font-semibold uppercase tracking-[0.15em] text-[#C8102E] transition-colors duration-300 hover:border-[#C8102E] hover:text-[#a80d27]"
             >
-              Customize My Countdown
+              Customize my countdown
             </button>
           </div>
         </div>
       </div>
+
+      {/* Bottom label */}
+      <div className="mt-7 flex items-center justify-center gap-3">
+        <span className="h-px w-8 bg-zinc-200" />
+
+        <p className="text-[7px] font-semibold uppercase tracking-[0.18em] text-zinc-400">
+          Your celebration, thoughtfully managed
+        </p>
+
+        <span className="h-px w-8 bg-zinc-200" />
+      </div>
     </section>
   );
 }
+

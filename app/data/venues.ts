@@ -1,18 +1,39 @@
-export type Venue = {
+export interface Venue {
   id: number;
-  city: string;
   name: string;
-  location: string;
-  price: string;
-  rating: number;
-  tag: string | null;
-  tagColor?: string;
-  tagBg?: string;
   description?: string;
+
   img: string;
-  layout: "tall" | "wide";
+  gallery?: string[];
+
+  location: string;
+
+  city?: string;
+  state?: string;
+  country?: string;
+
+  price: string;
+  pricePerPlate?: number;
+
+  rating: number;
+
+  minGuests?: number;
+  maxGuests?: number;
+
+  category?: string;
+
+  indoor?: boolean;
+  outdoor?: boolean;
+
   verified?: boolean;
-};
+  featured?: boolean;
+
+  tag?: string;
+  tagBg?: string;
+  tagColor?: string;
+
+  layout: "tall" | "wide";
+}
 
 export const DEFAULT_CITY = "Delhi NCR";
 

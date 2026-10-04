@@ -22,18 +22,13 @@ export const cities: City[] = [
     description: "Sea-facing hotels, rooftop vows, and grand urban receptions.",
   },
   {
-    name: "Jaipur",
-    venues: "760+ Venues",
-    image: "https://images.unsplash.com/photo-1599661046289-e31897846e41?w=900&q=80",
-    region: "Royal Rajasthan",
-    description: "Palace courtyards, sandstone facades, and timeless royal rituals.",
-  },
-  {
     name: "Udaipur",
     venues: "540+ Venues",
-    image: "https://images.unsplash.com/photo-1477587458883-47145ed31f2e?w=900&q=80",
+    image:
+      "https://images.unsplash.com/photo-1599661046289-e31897846e41?w=900&q=80",
     region: "Lake City",
-    description: "Lakefront mandaps, destination resorts, and cinematic sunsets.",
+    description:
+      "Lakefront mandaps, destination resorts, and cinematic sunsets.",
   },
   {
     name: "Goa",
@@ -48,6 +43,13 @@ export const cities: City[] = [
     image: "https://images.unsplash.com/photo-1596176530529-78163a4f7af2?w=900&q=80",
     region: "Garden City",
     description: "Contemporary hotels, breezy lawns, and elegant city celebrations.",
+  },
+  {
+    name: "Jaipur",
+    venues: "760+ Venues",
+    image: "https://images.unsplash.com/photo-1599661046289-e31897846e41?w=900&q=80",
+    region: "Royal Rajasthan",
+    description: "Palace courtyards, sandstone facades, and timeless royal rituals.",
   },
   {
     name: "Hyderabad",
